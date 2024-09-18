@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight List | FlyWithMe</title>
+    <link rel="stylesheet" href="(link unavailable)">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F8F9F9; /* Light off-white background */
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ECF0F1; /* Light gray background */
+            border: 1px solid #BDC3C7; /* Medium gray border */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+        }
+
+        /* Header */
+        h1 {
+            color: #2C3E50; /* Deep navy blue text */
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #BDC3C7; /* Medium gray border */
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #D5DBDB; /* Light gray background */
+            color: #2C3E50; /* Deep navy blue text */
+        }
+        tr:nth-child(even) {
+            background-color: #F2F3F4; /* Light off-gray background */
+        }
+        tr:hover {
+            background-color: #D5DBDB; /* Light gray hover background */
+        }
+
+        /* Link Styles */
+        a {
+            text-decoration: none;
+            color: #1ABC9C; /* Teal link text */
+        }
+        a:hover {
+            color: #16A085; /* Darker teal hover */
+        }
+
+        /* Empty Table Row */
+        .empty-row {
+            text-align: center;
+            font-style: italic;
+            color: #7F8C8D; /* Medium gray text */
+        }
+
+        /* Home Button */
+        .home-button {
+            background-color: #1ABC9C; /* Teal background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #16A085; /* Darker teal hover */
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'dashboard' %}" class="home-button">Home</a>
+    <div class="content">
+        {% block content %}
+            <h1>Flight List</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Flight ID</th>
+                        <th>Departure Airport</th>
+                        <th>Departure Date</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Airport</th>
+                        <th>Arrival Date</th>
+                        <th>Arrival Time</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for flight in flights %}
+                        <tr>
+                            <td>{{ flight.FlightId }}</td>
+                            <td>{{ flight.DepAirport }}</td>
+                            <td>{{ flight.DepDate }}</td>
+                            <td>{{ flight.DepTime }}</td>
+                            <td>{{ flight.ArrAirport }}</td>
+                            <td>{{ flight.ArrDate }}</td>
+                            <td>{{ flight.ArrTime }}</td>
+                            <td>
+                                <a href="{% url 'flight_edit' flight_id=flight.FlightId %}">Edit</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr class="empty-row">
+                            <td colspan="8">No flights found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endblock %}
+    </div>
+</body>
+</html>

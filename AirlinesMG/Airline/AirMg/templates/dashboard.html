@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard | FlyWithMe</title>
+    <link rel="stylesheet" href="(link unavailable)">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F4F6F6; /* Soft off-white background */
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        h1 {
+            color: #2C3E50; /* Deep navy blue */
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: #ECF0F1; /* Light gray background */
+            border: 1px solid #BDC3C7; /* Medium gray border */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+            padding: 20px;
+            height: 300px; /* Fixed height for sidebar */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Sidebar Header */
+        .sidebar h2 {
+            color: #2C3E50; /* Deep navy blue */
+            font-size: 24px;
+            margin-bottom: 20px;
+            margin-left: 0;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60%; /* Take up 60% of sidebar height */
+            padding: 20px;
+        }
+
+        .btn {
+            background-color: #1ABC9C; /* Teal background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #16A085; /* Darker teal hover */
+        }
+
+        /* Row and Column Styles */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .col-md-3 {
+            flex-basis: 25%;
+        }
+
+        .home-button {
+            background-color: #E74C3C; /* Bright red background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #C0392B; /* Darker red hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        {% block content %}
+            <h1>Dashboard</h1>
+            <div class="row">
+                <div class="col-md-3 sidebar">
+                    <h2>Flight Management</h2>
+                    <div class="btn-container">
+                        <a href="{% url 'flight_add' %}" class="btn">Add Flight</a>
+                        <a href="{% url 'flight_list' %}" class="btn">Flight List</a>
+                        <a href="{% url 'flight_search' %}" class="btn">Search Flight</a>
+                        <a href="{% url 'home' %}" class="home-button">Logout</a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+</body>
+</html>

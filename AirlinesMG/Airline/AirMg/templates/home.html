@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FlyWithMe</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F3F4; /* Very light gray background */
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #34495E; /* Dark Blue-Gray background */
+            padding: 1em;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #ECF0F1; /* Light Gray text */
+            text-decoration: none;
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            margin-top: 130px;
+            padding: 20px;
+            background-color: #FFFFFF; /* White background */
+            border: 1px solid #BDC3C7; /* Light gray border */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+        }
+
+        /* Header and Description */
+        h1 {
+            color: #2C3E50; /* Dark Navy Blue text */
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #2C3E50; /* Dark Navy Blue text */
+        }
+
+        /* Blockquote Styles */
+        blockquote {
+            background-color: #F0F3F4; /* Light gray background */
+            padding: 10px 20px;
+            border-left: 5px solid #2C3E50; /* Dark Navy Blue border */
+            font-style: italic;
+            color: #7F8C8D; /* Medium gray text */
+        }
+
+        /* Login Button Styles */
+        .login-btn {
+            background-color: #E74C3C; /* Bright Red background */
+            color: #fff; /* White text */
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+        }
+        .login-btn:hover {
+            background-color: #C0392B; /* Darker Red hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <!-- Empty navigation bar for now -->
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}
+            <h1>Welcome to FlyWithMe!</h1>
+            <p>FlyWithMe is your premier airline for safe, reliable, and comfortable travel. With a focus on exceptional customer service, we strive to make every flight a memorable experience.</p>
+            <blockquote>"Take to the skies with us and discover a world of possibilities."</blockquote>
+        {% endblock %}
+    </div>
+    <a href="{% url 'login' %}" class="login-btn">Login</a>
+</body>
+</html>

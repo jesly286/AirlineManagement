@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login | FlyWithMe</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F3F4; /* Very light gray background */
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 400px;
+            margin: 40px auto;
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #FFFFFF; /* White background */
+            border: 1px solid #BDC3C7; /* Light gray border */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
+        }
+
+        /* Header */
+        h1 {
+            color: #2C3E50; /* Dark Navy Blue text */
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        form {
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2C3E50; /* Dark Navy Blue text */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #BDC3C7; /* Light gray border */
+            border-radius: 5px;
+            background-color: #ECF0F1; /* Very light gray input background */
+        }
+
+        /* Error Message */
+        .error {
+            color: #E74C3C; /* Bright Red text */
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Button Styles */
+        button[type="submit"] {
+            background-color: #3498DB; /* Bright Blue background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #2980B9; /* Darker Blue hover */
+        }
+
+        /* Home Button */
+        .home-button {
+            background-color: #E74C3C; /* Vibrant Red background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #C0392B; /* Darker Red hover */
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'home' %}" class="home-button">Home</a>
+    <div class="content">
+        {% block content %}
+            <h1>Login</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+                <button type="submit">Login</button>
+            </form>
+        {% endblock %}
+    </div>
+</body>
+</html>

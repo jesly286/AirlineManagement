@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Flight | FlyWithMe</title>
+    <link rel="stylesheet" href="(link unavailable)">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F4F6F6; /* Soft off-white background */
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ECF0F1; /* Light gray background */
+            border: 1px solid #BDC3C7; /* Medium gray border */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+        }
+
+        /* Header */
+        h1 {
+            color: #2C3E50; /* Deep navy blue */
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        form {
+            padding: 20px;
+        }
+
+        /* Form Fields */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2C3E50; /* Deep navy blue */
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #BDC3C7;
+            border-radius: 5px;
+        }
+
+        /* Button Styles */
+        button[type="submit"] {
+            background-color: #1ABC9C; /* Teal background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #16A085; /* Darker teal hover */
+        }
+
+        /* Error Messages */
+        .error {
+            color: #E74C3C; /* Bright red text */
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Home Button */
+        .home-button {
+            background-color: #E74C3C; /* Bright red background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #C0392B; /* Darker red hover */
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'flight_list' %}" class="home-button">Home</a>
+    <div class="content">
+        {% block content %}
+            <h1>Edit Flight</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Update Changes</button>
+            </form>
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Search | FlyWithMe</title>
+    <link rel="stylesheet" href="(link unavailable)">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F8F9F9; /* Light off-white background */
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ECF0F1; /* Light gray background */
+            border: 1px solid #BDC3C7; /* Medium gray border */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+        }
+
+        /* Header */
+        h1 {
+            color: #2C3E50; /* Deep navy blue text */
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        form {
+            padding: 20px;
+        }
+
+        /* Form Fields */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #34495E; /* Darker blue-gray text */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #BDC3C7;
+            border-radius: 5px;
+        }
+
+        /* Button Styles */
+        button[type="submit"] {
+            background-color: #1ABC9C; /* Teal background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #16A085; /* Darker teal hover */
+        }
+
+        /* Error Messages */
+        .error {
+            color: #E74C3C; /* Red text */
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Flight Results */
+        .flight-results {
+            margin-top: 20px;
+        }
+        .flight-results h2 {
+            margin-bottom: 10px;
+            color: #2C3E50; /* Deep navy blue text */
+        }
+        .flight {
+            background-color: #F2F3F4; /* Light off-gray background */
+            padding: 20px;
+            border-bottom: 1px solid #BDC3C7;
+        }
+        .flight-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .flight-details {
+            margin-left: 20px;
+        }
+        .flight-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .flight-details li {
+            margin-bottom: 10px;
+        }
+        .flight-details li span {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #34495E; /* Darker blue-gray text */
+        }
+
+        /* Home Button */
+        .home-button {
+            background-color: #1ABC9C; /* Teal background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-button:hover {
+            background-color: #16A085; /* Darker teal hover */
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'dashboard' %}" class="home-button">Home</a>
+    <div class="content">
+        {% block content %}
+            <h1>Flight Search</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label>Departure Airport:</label>
+                <input type="text" name="dep_airport"><br><br>
+                <label>Arrival Airport:</label>
+                <input type="text" name="arr_airport"><br><br>
+                <button type="submit">Search</button>
+            </form>
+            {% if message %}
+                <p class="error">{{ message }}</p>
+            {% elif flights %}
+                <div class="flight-results">
+                    <h2>Flight Results</h2>
+                    {% for flight in flights %}
+                        <div class="flight">
+                            <div class="flight-info">
+                                <h3>Flight {{ flight.FlightId }}</h3>
+                                <p>{{ flight.DepAirport }} to {{ flight.ArrAirport }}</p>
+                            </div>
+                            <div class="flight-details">
+                                <ul>
+                                    <li><span>Departure Date:</span> {{ flight.DepDate }}</li>
+                                    <li><span>Departure Time:</span> {{ flight.DepTime }}</li>
+                                    <li><span>Arrival Date:</span> {{ flight.ArrDate }}</li>
+                                    <li><span>Arrival Time:</span> {{ flight.ArrTime }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Search for flights by entering departure and arrival airports.</p>
+            {% endif %}
+        {% endblock %}
+    </div>
+</body>
+</html>
